@@ -1,0 +1,96 @@
+med10 kmeans_weight_500_4/cluster.1/ average centroid distance 40.4552067118
+med10 kmeans_weight_500_4/cluster.1/ centroid index 2
+med10 kmeans_weight_500_4/cluster.1/ centroid rmf name ('kmeans_weight_500_4/cluster.1/10.rmf3', 0)
+med10 kmeans_weight_500_4/cluster.1/ kmeans_weight_500_4/cluster.1/ average pairwise distance 47.0991336941
+middle kmeans_weight_500_4/cluster.1/ average centroid distance 35.6046804349
+middle kmeans_weight_500_4/cluster.1/ centroid index 7
+middle kmeans_weight_500_4/cluster.1/ centroid rmf name ('kmeans_weight_500_4/cluster.1/104.rmf3', 0)
+middle kmeans_weight_500_4/cluster.1/ kmeans_weight_500_4/cluster.1/ average pairwise distance 38.4785579525
+med14 kmeans_weight_500_4/cluster.1/ average centroid distance 41.5722718063
+med14 kmeans_weight_500_4/cluster.1/ centroid index 9
+med14 kmeans_weight_500_4/cluster.1/ centroid rmf name ('kmeans_weight_500_4/cluster.1/106.rmf3', 0)
+med14 kmeans_weight_500_4/cluster.1/ kmeans_weight_500_4/cluster.1/ average pairwise distance 46.6560959256
+med15 kmeans_weight_500_4/cluster.1/ average centroid distance 35.9004505758
+med15 kmeans_weight_500_4/cluster.1/ centroid index 6
+med15 kmeans_weight_500_4/cluster.1/ centroid rmf name ('kmeans_weight_500_4/cluster.1/103.rmf3', 0)
+med15 kmeans_weight_500_4/cluster.1/ kmeans_weight_500_4/cluster.1/ average pairwise distance 39.8914288294
+med16 kmeans_weight_500_4/cluster.1/ average centroid distance 19.5534797605
+med16 kmeans_weight_500_4/cluster.1/ centroid index 9
+med16 kmeans_weight_500_4/cluster.1/ centroid rmf name ('kmeans_weight_500_4/cluster.1/106.rmf3', 0)
+med16 kmeans_weight_500_4/cluster.1/ kmeans_weight_500_4/cluster.1/ average pairwise distance 24.97047874
+med17 kmeans_weight_500_4/cluster.1/ average centroid distance 4.06673833189
+med17 kmeans_weight_500_4/cluster.1/ centroid index 7
+med17 kmeans_weight_500_4/cluster.1/ centroid rmf name ('kmeans_weight_500_4/cluster.1/104.rmf3', 0)
+med17 kmeans_weight_500_4/cluster.1/ kmeans_weight_500_4/cluster.1/ average pairwise distance 4.42144713826
+med18 kmeans_weight_500_4/cluster.1/ average centroid distance 2.55438825004
+med18 kmeans_weight_500_4/cluster.1/ centroid index 6
+med18 kmeans_weight_500_4/cluster.1/ centroid rmf name ('kmeans_weight_500_4/cluster.1/103.rmf3', 0)
+med18 kmeans_weight_500_4/cluster.1/ kmeans_weight_500_4/cluster.1/ average pairwise distance 2.83895716835
+med19 kmeans_weight_500_4/cluster.1/ average centroid distance 41.7045662132
+med19 kmeans_weight_500_4/cluster.1/ centroid index 4
+med19 kmeans_weight_500_4/cluster.1/ centroid rmf name ('kmeans_weight_500_4/cluster.1/101.rmf3', 0)
+med19 kmeans_weight_500_4/cluster.1/ kmeans_weight_500_4/cluster.1/ average pairwise distance 51.4694674817
+med31 kmeans_weight_500_4/cluster.1/ average centroid distance 40.7173390858
+med31 kmeans_weight_500_4/cluster.1/ centroid index 8
+med31 kmeans_weight_500_4/cluster.1/ centroid rmf name ('kmeans_weight_500_4/cluster.1/105.rmf3', 0)
+med31 kmeans_weight_500_4/cluster.1/ kmeans_weight_500_4/cluster.1/ average pairwise distance 47.427978105
+tail kmeans_weight_500_4/cluster.1/ average centroid distance 28.5282426416
+tail kmeans_weight_500_4/cluster.1/ centroid index 9
+tail kmeans_weight_500_4/cluster.1/ centroid rmf name ('kmeans_weight_500_4/cluster.1/106.rmf3', 0)
+tail kmeans_weight_500_4/cluster.1/ kmeans_weight_500_4/cluster.1/ average pairwise distance 32.5538021158
+All kmeans_weight_500_4/cluster.1/ average centroid distance 21.8333863104
+All kmeans_weight_500_4/cluster.1/ centroid index 7
+All kmeans_weight_500_4/cluster.1/ centroid rmf name ('kmeans_weight_500_4/cluster.1/104.rmf3', 0)
+All kmeans_weight_500_4/cluster.1/ kmeans_weight_500_4/cluster.1/ average pairwise distance 23.9265088683
+med11 kmeans_weight_500_4/cluster.1/ average centroid distance 1.47809805837
+med11 kmeans_weight_500_4/cluster.1/ centroid index 8
+med11 kmeans_weight_500_4/cluster.1/ centroid rmf name ('kmeans_weight_500_4/cluster.1/105.rmf3', 0)
+med11 kmeans_weight_500_4/cluster.1/ kmeans_weight_500_4/cluster.1/ average pairwise distance 1.86593903055
+med21 kmeans_weight_500_4/cluster.1/ average centroid distance 30.6688807354
+med21 kmeans_weight_500_4/cluster.1/ centroid index 2
+med21 kmeans_weight_500_4/cluster.1/ centroid rmf name ('kmeans_weight_500_4/cluster.1/10.rmf3', 0)
+med21 kmeans_weight_500_4/cluster.1/ kmeans_weight_500_4/cluster.1/ average pairwise distance 35.9110558227
+med20 kmeans_weight_500_4/cluster.1/ average centroid distance 0.837942533857
+med20 kmeans_weight_500_4/cluster.1/ centroid index 6
+med20 kmeans_weight_500_4/cluster.1/ centroid rmf name ('kmeans_weight_500_4/cluster.1/103.rmf3', 0)
+med20 kmeans_weight_500_4/cluster.1/ kmeans_weight_500_4/cluster.1/ average pairwise distance 1.12867020647
+med22 kmeans_weight_500_4/cluster.1/ average centroid distance 0.0
+med22 kmeans_weight_500_4/cluster.1/ centroid index 0
+med22 kmeans_weight_500_4/cluster.1/ centroid rmf name ('kmeans_weight_500_4/cluster.1/0.rmf3', 0)
+med22 kmeans_weight_500_4/cluster.1/ kmeans_weight_500_4/cluster.1/ average pairwise distance 0.0
+med2 kmeans_weight_500_4/cluster.1/ average centroid distance 58.2832474329
+med2 kmeans_weight_500_4/cluster.1/ centroid index 7
+med2 kmeans_weight_500_4/cluster.1/ centroid rmf name ('kmeans_weight_500_4/cluster.1/104.rmf3', 0)
+med2 kmeans_weight_500_4/cluster.1/ kmeans_weight_500_4/cluster.1/ average pairwise distance 64.3070540908
+med3 kmeans_weight_500_4/cluster.1/ average centroid distance 68.5084443693
+med3 kmeans_weight_500_4/cluster.1/ centroid index 1
+med3 kmeans_weight_500_4/cluster.1/ centroid rmf name ('kmeans_weight_500_4/cluster.1/1.rmf3', 0)
+med3 kmeans_weight_500_4/cluster.1/ kmeans_weight_500_4/cluster.1/ average pairwise distance 83.1308116756
+med1 kmeans_weight_500_4/cluster.1/ average centroid distance 32.6302497404
+med1 kmeans_weight_500_4/cluster.1/ centroid index 8
+med1 kmeans_weight_500_4/cluster.1/ centroid rmf name ('kmeans_weight_500_4/cluster.1/105.rmf3', 0)
+med1 kmeans_weight_500_4/cluster.1/ kmeans_weight_500_4/cluster.1/ average pairwise distance 37.815895164
+med6 kmeans_weight_500_4/cluster.1/ average centroid distance 8.98940242712
+med6 kmeans_weight_500_4/cluster.1/ centroid index 7
+med6 kmeans_weight_500_4/cluster.1/ centroid rmf name ('kmeans_weight_500_4/cluster.1/104.rmf3', 0)
+med6 kmeans_weight_500_4/cluster.1/ kmeans_weight_500_4/cluster.1/ average pairwise distance 11.1147343078
+med7 kmeans_weight_500_4/cluster.1/ average centroid distance 33.3969013594
+med7 kmeans_weight_500_4/cluster.1/ centroid index 7
+med7 kmeans_weight_500_4/cluster.1/ centroid rmf name ('kmeans_weight_500_4/cluster.1/104.rmf3', 0)
+med7 kmeans_weight_500_4/cluster.1/ kmeans_weight_500_4/cluster.1/ average pairwise distance 37.635250535
+med4 kmeans_weight_500_4/cluster.1/ average centroid distance 26.7852701856
+med4 kmeans_weight_500_4/cluster.1/ centroid index 6
+med4 kmeans_weight_500_4/cluster.1/ centroid rmf name ('kmeans_weight_500_4/cluster.1/103.rmf3', 0)
+med4 kmeans_weight_500_4/cluster.1/ kmeans_weight_500_4/cluster.1/ average pairwise distance 30.6615422127
+med5 kmeans_weight_500_4/cluster.1/ average centroid distance 40.0878137018
+med5 kmeans_weight_500_4/cluster.1/ centroid index 9
+med5 kmeans_weight_500_4/cluster.1/ centroid rmf name ('kmeans_weight_500_4/cluster.1/106.rmf3', 0)
+med5 kmeans_weight_500_4/cluster.1/ kmeans_weight_500_4/cluster.1/ average pairwise distance 45.3737863459
+med8 kmeans_weight_500_4/cluster.1/ average centroid distance 3.27014922644
+med8 kmeans_weight_500_4/cluster.1/ centroid index 4
+med8 kmeans_weight_500_4/cluster.1/ centroid rmf name ('kmeans_weight_500_4/cluster.1/101.rmf3', 0)
+med8 kmeans_weight_500_4/cluster.1/ kmeans_weight_500_4/cluster.1/ average pairwise distance 3.63021529471
+med9 kmeans_weight_500_4/cluster.1/ average centroid distance 19.9940858817
+med9 kmeans_weight_500_4/cluster.1/ centroid index 2
+med9 kmeans_weight_500_4/cluster.1/ centroid rmf name ('kmeans_weight_500_4/cluster.1/10.rmf3', 0)
+med9 kmeans_weight_500_4/cluster.1/ kmeans_weight_500_4/cluster.1/ average pairwise distance 24.9705765431
