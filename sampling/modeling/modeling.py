@@ -4,6 +4,8 @@ import IMP.algebra
 import IMP.atom
 import IMP.container
 
+import IMP.pmi.mmcif
+import IMP.pmi.metadata
 import IMP.pmi.restraints.crosslinking
 import IMP.pmi.restraints.stereochemistry
 import IMP.pmi.restraints.em
@@ -15,6 +17,7 @@ import IMP.pmi.output
 import IMP.pmi.macros
 
 import os
+import sys
 
 # setting up parameters
 
@@ -28,6 +31,43 @@ sampleobjects = []
 
 m = IMP.Model()
 simo = IMP.pmi.representation.Representation(m,upperharmonic=True,disorderedlength=False)
+
+# We used Phyre2 to generate a model for med16
+simo.add_metadata(IMP.pmi.metadata.Software(
+          name='Phyre2', classification='protein homology modeling',
+          description='Protein Homology/analogY Recognition Engine V 2.0',
+          version='2.0',
+          url='http://www.sbg.bio.ic.ac.uk/~phyre2/'))
+# Protein Prospector was used to assign the CX-MS data
+simo.add_metadata(IMP.pmi.metadata.Software(
+          name='Protein Prospector', classification='mass spectrometry',
+          description='Proteomics tools for mining sequence databases '
+                      'in conjunction with Mass Spectrometry experiments.',
+          version='5.13.1',
+          url='http://prospector.ucsf.edu/'))
+# We used Situs to dock the Head module into an EM map
+simo.add_metadata(IMP.pmi.metadata.Software(
+          name='Situs', classification='density map fitting',
+          description='Modeling of atomic resolution structures into '
+                      'low-resolution density maps',
+          version='2.7',
+          url='http://situs.biomachina.org/'))
+simo.add_metadata(IMP.pmi.metadata.Citation(
+          pmid='26402457',
+          title="Molecular architecture of the yeast Mediator complex.",
+          journal="Elife", volume=4, page_range='e08719',
+          year=2015,
+          authors=['Robinson PJ', 'Trnka MJ', 'Pellarin R', 'Greenberg CH',
+                   'Bushnell DA', 'Davis R', 'Burlingame AL', 'Sali A',
+                   'Kornberg RD'],
+          doi='10.7554/eLife.08719'))
+
+if '--mmcif' in sys.argv:
+    # Record the modeling protocol to an mmCIF file
+    po = IMP.pmi.mmcif.ProtocolOutput(open('mediator.cif', 'w'))
+    simo.add_protocol_output(po)
+
+simo.dry_run = '--dry-run' in sys.argv
 
 fastadirectory="../fasta_files/"
 pdbdirectory="../pdb_files/"
@@ -142,7 +182,9 @@ middle_mass=sum((IMP.atom.Mass(p).get_mass() for h in resdensities_middle for p 
 gemh = IMP.pmi.restraints.em.GaussianEMRestraint(resdensities_middle,'../em_map_files/asturias_middle_module_translated_resampled.mrc.gmm.29.txt',
                                                target_mass_scale=middle_mass,
                                                 slope=0.000001,
-                                                target_radii_scale=3.0)
+                                                target_radii_scale=3.0,
+                                                representation=simo,
+                                                emdb='EMD-2634')
 gemh.add_to_model()
 gemh.set_weight(100.0)
 #gem.center_model_on_target_density(simo)
@@ -155,7 +197,9 @@ tail_mass=sum((IMP.atom.Mass(p).get_mass() for h in resdensities_tail for p in I
 gemt = IMP.pmi.restraints.em.GaussianEMRestraint(resdensities_tail,'../em_map_files/asturias_tail_module_translated_resampled.mrc.gmm.49.txt',
                                                target_mass_scale=tail_mass,
                                                 slope=0.000001,
-                                                target_radii_scale=3.0)
+                                                target_radii_scale=3.0,
+                                                representation=simo,
+                                                emdb='EMD-2634')
 gemt.add_to_model()
 gemt.set_weight(100.0)
 #gem.center_model_on_target_density(simo)
@@ -182,5 +226,13 @@ mc1=IMP.pmi.macros.ReplicaExchange0(m,
                                     global_output_directory="output",
                                     rmf_dir="rmfs/",
                                     best_pdb_dir="pdbs/",
-                                    replica_stat_file_suffix="stat_replica")
+                                    replica_stat_file_suffix="stat_replica",
+                                    test_mode=simo.dry_run)
 mc1.execute_macro()
+
+if '--mmcif' in sys.argv:
+    # Add clustering info to the mmCIF file
+    os.chdir('../../analysis/clustering')
+    with open('clustering.py') as fh:
+        exec(fh.read())
+    po.flush()
