@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.60814.svg)](http://dx.doi.org/10.5281/zenodo.60814) 
+
 ## Compatibility:
 
 The scripts are running safely with `IMP.pmi` version from `915c00bac191ab32f022ae425facf538b64e3e54` to `32a774583007c3a7135c8adf970846ea7a52f453` and `IMP` version `3d7d35a367342a94655b5ca2f75cc4d4fb2d5c71`.
