@@ -170,6 +170,13 @@ xl = IMP.pmi.restraints.crosslinking.ISDCrossLinkMS(simo,
                                    resolution=1.0,
                                    label="DSS",
                                    csvfile=True)
+# Point to the raw mass spec data and peaklists used to derive the crosslinks.
+l = IMP.pmi.metadata.MassIVELocation('MSV000079237',
+                         details='All raw mass spectrometry files and '
+                                 'peaklists used in the study')
+d = IMP.pmi.metadata.MassSpecDataset(location=l)
+xl.dataset.add_primary(d)
+
 xl.add_to_model()
 sampleobjects.append(xl)
 outputobjects.append(xl)
@@ -185,8 +192,12 @@ gemh = IMP.pmi.restraints.em.GaussianEMRestraint(resdensities_middle,'../em_map_
                                                target_mass_scale=middle_mass,
                                                 slope=0.000001,
                                                 target_radii_scale=3.0,
-                                                representation=simo,
-                                                emdb='EMD-2634')
+                                                representation=simo)
+# Point to the original map in EMDB before we processed it
+l = IMP.pmi.metadata.EMDBLocation('EMD-2634')
+emdb = IMP.pmi.metadata.EMDensityDataset(location=l)
+gemh.dataset.add_primary(emdb)
+
 gemh.add_to_model()
 gemh.set_weight(100.0)
 #gem.center_model_on_target_density(simo)
@@ -200,8 +211,10 @@ gemt = IMP.pmi.restraints.em.GaussianEMRestraint(resdensities_tail,'../em_map_fi
                                                target_mass_scale=tail_mass,
                                                 slope=0.000001,
                                                 target_radii_scale=3.0,
-                                                representation=simo,
-                                                emdb='EMD-2634')
+                                                representation=simo)
+# This map was generated from the same EMDB entry as above
+gemt.dataset.add_primary(emdb)
+
 gemt.add_to_model()
 gemt.set_weight(100.0)
 #gem.center_model_on_target_density(simo)
