@@ -77,6 +77,14 @@ gmmdirectory="../model_gmm_files/"
 headpdb="head_module_em_aligned_translated.pdb"
 midpdb="cr_mid_fullmed10.pdb"
 
+# Add metadata to explain how we generated these PDB files;
+# Middle is a combination of several X-ray structures and comparative models
+l = IMP.pmi.metadata.LocalFileLocation(pdbdirectory+midpdb,
+             details="""This combines structures of Med7C-Med21 and Med7N-Med31
+from X-ray structures, with Med4-Med9 and the first 540 residues of Med16
+from comparative models.""")
+d = IMP.pmi.metadata.ComparativeModelDataset(l)
+simo.set_file_dataset(pdbdirectory+midpdb, d)
 
 xlmsdirectory="../CXMS_files/"
 
