@@ -258,6 +258,9 @@ mc1.execute_macro()
 if '--mmcif' in sys.argv:
     # Add clustering info to the mmCIF file
     os.chdir('../../analysis/clustering')
+    loc = IMP.pmi.metadata.FileLocation('clustering.py')
+    simo.add_metadata(IMP.pmi.metadata.PythonScript(location=loc,
+                        description='Main clustering and analysis script'))
     with open('clustering.py') as fh:
         exec(fh.read())
     po.flush()
