@@ -62,7 +62,10 @@ simo.add_metadata(IMP.pmi.metadata.Citation(
                    'Kornberg RD'],
           doi='10.7554/eLife.08719'))
 simo.add_metadata(IMP.pmi.metadata.Repository(
-          doi="10.5281/zenodo.160593", root="../.."))
+          doi="10.5281/zenodo.160593", root="../..",
+          url="https://zenodo.org/record/160593/files/integrativemodeling/"
+              "mediator-v1.0.1.zip",
+          top_directory="integrativemodeling-mediator-a04b197"))
 
 if '--mmcif' in sys.argv:
     # Record the modeling protocol to an mmCIF file
