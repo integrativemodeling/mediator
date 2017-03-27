@@ -1,5 +1,7 @@
+import os
 import sys
-sys.path.append('/veena1/home/pellarin/imp-projects/XL_analysis/src/')
+sys.path.insert(0, os.path.join(os.path.dirname(sys.argv[0]),
+                                'XL_analysis', 'src'))
 import xltable
 import glob
 
