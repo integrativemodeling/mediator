@@ -62,7 +62,7 @@ xlt=xltable.XLTable(contact_threshold=30)
 xlt.load_crosslinks("../../sampling/CXMS_files/full_med_splitmods.txt",
                     field_map)
 for prot in prot_list:
-    xlt.load_sequence_from_fasta_file(fasta_file="../../mediator_modeling/fasta_files/"+prot+".fasta",
+    xlt.load_sequence_from_fasta_file(fasta_file="../../sampling/fasta_files/"+prot+".fasta",
                                   id_in_fasta_file=prot,
                                   protein_name=prot)  
 
