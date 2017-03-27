@@ -161,7 +161,8 @@ gemt.set_weight(100.0)
 #gem.center_model_on_target_density(simo)
 outputobjects.append(gemt)
 
-
+nframes=20000
+if '--test' in sys.argv: nframes=2000
 mc1=IMP.pmi.macros.ReplicaExchange0(m,
                                     simo,
                                     monte_carlo_sample_objects=sampleobjects,
@@ -172,7 +173,7 @@ mc1=IMP.pmi.macros.ReplicaExchange0(m,
                                     replica_exchange_maximum_temperature=2.5,
                                     number_of_best_scoring_models=500,
                                     monte_carlo_steps=10,
-                                    number_of_frames=20000,
+                                    number_of_frames=nframes,
                                     write_initial_rmf=True,
                                     initial_rmf_name_suffix="initial",
                                     stat_file_name_suffix="stat",
