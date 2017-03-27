@@ -33,14 +33,14 @@ and then run with 64 threads (64 replicas):
     mpirun -np 64 python modeling.py
 
 
-# Content of the directories:
+## Content of the directories:
 
 `analysis`: analysis scripts and clustering results of the whole ensemble of solutions, the two ensemble halves, and the jackknifing
 
 `sampling`: sampling and modeling scripts, all input data
 
 
-## `analysis` directory:
+### `analysis` directory:
 
 `clustering`: the clustering results for the whole ensemble of solutions
 
@@ -105,7 +105,7 @@ and then run with 64 threads (64 replicas):
 `XL_table_tail.py`: calculate the contact map and the cross-link map of the tail module
 
 		
-## `sampling` directory:
+### `sampling` directory:
 
 `CXMS_files`: cross-link datasets
 
@@ -119,13 +119,13 @@ and then run with 64 threads (64 replicas):
 
 `pdb_files`: crystallographic structures and homology models
 
-##`sampling/CXMS_files` directory:
+### `sampling/CXMS_files` directory:
 
 `full_med_splitmods.txt`: mediator cross-link dataset, cvs file.
 
 `jackknife_analysis`: contains jackknifed datasets 
 
-##`sampling/em_map_files` directory:
+### `sampling/em_map_files` directory:
 
 `asturias_mediator.mrc`: the input file from Asturias lab [EMD-2634](http://www.ebi.ac.uk/pdbe/entry/EMD-2634)
 
@@ -149,7 +149,7 @@ and then run with 64 threads (64 replicas):
 
 `calculate.density.sh`: script used to calculate the GMMs.
 
-##`sampling/pdb_files` directory:
+### `sampling/pdb_files` directory:
 
 `cr_mid_fullmed10.pdb`: middle module pdb
 
