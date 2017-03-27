@@ -8,11 +8,8 @@ import sys
 
 TOPDIR = os.path.abspath(os.path.join(os.path.dirname(sys.argv[0]), '..'))
 
-class Tests(utils.TestBase):
-        # todo: assert outputs
-
-class Tests(utils.TestBase):
-    def test_Rrp6(self):
+class Tests(unittest.TestCase):
+    def test_simple(self):
         """Test model building and analysis"""
         os.chdir(os.path.join(TOPDIR, 'sampling', 'modeling'))
         p = subprocess.check_call(["python", 'modeling.py', "--test"])
