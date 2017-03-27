@@ -163,7 +163,7 @@ gemt.set_weight(100.0)
 outputobjects.append(gemt)
 
 nframes=20000
-if '--test' in sys.argv: nframes=2000
+if '--test' in sys.argv: nframes=1000
 mc1=IMP.pmi.macros.ReplicaExchange0(m,
                                     simo,
                                     monte_carlo_sample_objects=sampleobjects,
