@@ -15,6 +15,7 @@ import IMP.pmi.output
 import IMP.pmi.macros
 
 import os
+import sys
 
 # setting up parameters
 
