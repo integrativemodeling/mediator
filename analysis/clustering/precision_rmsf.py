@@ -12,7 +12,7 @@ test_mode='--test' in sys.argv # runs on the first 10 structures to test if it r
 # specify the cluster directory to be analysed
 
 #root_cluster_directory='kmeans_500_10'
-root_cluster_directory='kmeans_weight_500_1'
+root_cluster_directory='kmeans_weight_500_4'
 
 # choose whatever selection for the precision calculation
 

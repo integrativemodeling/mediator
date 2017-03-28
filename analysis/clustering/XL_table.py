@@ -1,4 +1,6 @@
 import os
+import matplotlib
+matplotlib.use('Agg')
 import sys
 sys.path.insert(0, os.path.join(os.path.dirname(sys.argv[0]),
                                 'XL_analysis', 'src'))
@@ -66,8 +68,8 @@ for prot in prot_list:
                                   id_in_fasta_file=prot,
                                   protein_name=prot)  
 
-
-xlt.load_rmf_coordinates(medianrmf,frame,prot_list)
+for rmf in glob.glob(cluster_directory+"*.rmf3")[0::10]:
+    xlt.load_rmf_coordinates(rmf,0,prot_list)
 
 ### creating contact map
 xlt.setup_contact_map()

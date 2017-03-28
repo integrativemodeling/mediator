@@ -107,7 +107,7 @@ components_names={}
 for i in names:
     components_names[i]=i
 
-nclusters=1                                       # number of clusters needed by kmeans
+nclusters=4                                       # number of clusters needed by kmeans
 mc.clustering("SimplifiedModel_Total_Score_None",  # don't change, field where to find the score
               "rmf_file",                          # don't change, field where to find the path for the rmf_file
               "rmf_frame_index",                   # don't change, field for the frame index
