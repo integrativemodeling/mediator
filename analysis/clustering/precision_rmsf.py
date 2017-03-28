@@ -4,14 +4,15 @@ import IMP.pmi.analysis
 import IMP.pmi.output
 import IMP.atom
 import glob
+import sys
 import itertools
 
-is_mpi=False
-test_mode=True  # runs on the first 10 structures to test if it runs smoothly
+test_mode='--test' in sys.argv # runs on the first 10 structures to test if it runs smoothly
 
 # specify the cluster directory to be analysed
 
-root_cluster_directory='kmeans_500_10'
+#root_cluster_directory='kmeans_500_10'
+root_cluster_directory='kmeans_weight_500_1'
 
 # choose whatever selection for the precision calculation
 
@@ -61,20 +62,20 @@ else:
       frames.append([0]*len(rmfs[-1]))
  
 model=IMP.Model()
-pr=IMP.pmi.analysis.Precision(model,'one',selection_dictionary=selection_dictionary)
+pr=IMP.pmi.analysis.Precision(model,resolution=1,selection_dictionary=selection_dictionary)
 pr.set_precision_style('pairwise_rmsd')
 
 for n in range(len(rmfs)):
-    pr.add_structures(zip(rmfs[n],frames[n]),clusterdirectories[n],is_mpi=is_mpi)
+    pr.add_structures(zip(rmfs[n],frames[n]),clusterdirectories[n])
 
 
-for pair in itertools.product(range(len(rmfs)), repeat=2):
-    clus1=pair[0]
-    clus2=pair[1]
-    pr.get_precision(root_cluster_directory+"/precision."+str(clus1)+"."+str(clus2)+".out",
-                     clusterdirectories[clus1],
-                     clusterdirectories[clus2],
-                     is_mpi=is_mpi,skip=1)
+#for pair in itertools.product(range(len(rmfs)), repeat=2):
+#    clus1=pair[0]
+#    clus2=pair[1]
+#    pr.get_precision(root_cluster_directory+"/precision."+str(clus1)+"."+str(clus2)+".out",
+#                     clusterdirectories[clus1],
+#                     clusterdirectories[clus2],
+#                     skip=1)
 
 for n in range(len(rmfs)):
-    pr.get_rmsf(clusterdirectories[n],clusterdirectories[n]+"/",is_mpi=is_mpi,skip=1,set_plot_yaxis_range=(0,100.0))
+    pr.get_rmsf(clusterdirectories[n],clusterdirectories[n]+"/",skip=1,set_plot_yaxis_range=(0,100.0))
