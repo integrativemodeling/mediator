@@ -10,6 +10,7 @@ model=IMP.Model()
 mc=IMP.pmi.macros.AnalysisReplicaExchange0(model,
                                         stat_file_name_suffix="stat",     # don't change
                                         merge_directories=[ # change this list splitting the runs or adding new runs
+                                        "../../sampling/modeling/",
                                         "../modeling.split_density.scale_radii.two_bayesian_classes_jack-1.1",
                                         "../modeling.split_density.scale_radii.two_bayesian_classes_jack-1.2",
                                         "../modeling.split_density.scale_radii.two_bayesian_classes_jack-1.3",
