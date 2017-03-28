@@ -98,7 +98,7 @@ mc.clustering("SimplifiedModel_Total_Score_None",  # don't change, field where t
               distance_matrix_file="distance.rawmatrix.pkl", # save the distance matrix
               outputdir="kmeansi_weight_500_"+str(nclusters)+"/",  # directory name for the clustering
               feature_keys=feature_list,                     # extract these fields from the stat file
-              load_distance_matrix_file=True,                # skip the matrix calcuklation and read the precalculated matrix
+              load_distance_matrix_file=False,               # skip the matrix calcuklation and read the precalculated matrix
               skip_clustering=False,                         # skip clustering
               display_plot=False,                            # display the heat map plot of the distance matrix
               exit_after_display=False,                      # exit after having displayed the distance matrix plot
