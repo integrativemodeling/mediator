@@ -121,7 +121,7 @@ domains_tail=   [("med2",  "med2_1",    0.00,  fastadirectory+"med2.fasta",  "me
                  ("med3",  "med3_1",    0.20,  fastadirectory+"med3.fasta",  "med3",   "BEADS",               None,   (1,401,0),     True,       40,      14,         [19,12,14],     0,   None,  None,   [14]),
                  ("med5",  "med5_1",    0.40,  fastadirectory+"med5.fasta",  "med5",   "BEADS",               None,   (1,1146,0),    True,      40,      15,         [19,12,15],     0,   None,  None,   [15]),
                  ("med15", "med15_1",   0.60,  fastadirectory+"med15.fasta", "med15",  "BEADS",               None,   (1,1094,0),    True,      40,      16,         [19,12,16],     0,   None,  None,   [16]),
-                 ("med16", "med16_1",   0.80,  fastadirectory+"med16.fasta", "med16",  pdbdirectory+"med16.NTD.phyre.model.pdb",    " ",   (8,538,0),    True,      40,      19,         [19,12,17],     10,   gmmdirectory+"med16_1.txt",  gmmdirectory+"med16_1.mrc",   [20]),
+                 ("med16", "med16_1",   0.80,  fastadirectory+"med16.fasta", "med16",  pdbdirectory+"med16.NTD.phyre.model.pdb",    "A",   (8,538,0),    True,      40,      19,         [19,12,17],     10,   gmmdirectory+"med16_1.txt",  gmmdirectory+"med16_1.mrc",   [20]),
                  ("med16", "med16_2",   0.80,  fastadirectory+"med16.fasta", "med16",  "BEADS",               None,   (539,986,0),     True,       40,      17,         [19,12,17],     0,   None,  None,   [17]),
                  ("med14",  "med14_2",  1.00,  fastadirectory+"med14.fasta", "med14",  "BEADS",               None,   (712,1082,0),  True,        40,      10,         [19,1,9],     0,   None,  None,   [7])]
 
