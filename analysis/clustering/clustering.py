@@ -107,11 +107,14 @@ components_names={}
 for i in names:
     components_names[i]=i
 
+prefilter=1818
+if '--test' in sys.argv:
+    prefilter=10000
 nclusters=4                                       # number of clusters needed by kmeans
 mc.clustering("SimplifiedModel_Total_Score_None",  # don't change, field where to find the score
               "rmf_file",                          # don't change, field where to find the path for the rmf_file
               "rmf_frame_index",                   # don't change, field for the frame index
-              prefiltervalue=1818,               # prefilter the models by score
+              prefiltervalue=prefilter,          # prefilter the models by score
               number_of_best_scoring_models=500,   # number of models to be clustered
               alignment_components=None,           # don't change, (list of proteins you want to use for structural alignment
               rmsd_calculation_components=components_names, # list of proteins used to calculated the rmsd

@@ -17,7 +17,7 @@ class Tests(unittest.TestCase):
         os.chdir(os.path.join(TOPDIR, 'analysis', 'clustering'))
         # Remove pregenerated outputs
         shutil.rmtree('kmeans_weight_500_4')
-        p = subprocess.check_call(["python", 'clustering.py'])
+        p = subprocess.check_call(["python", 'clustering.py', '--test'])
         p = subprocess.check_call(["python", 'precision_rmsf.py', '--test'])
         p = subprocess.check_call(["python", 'XL_table.py'])
         p = subprocess.check_call(["python", 'XL_table_tail.py'])
