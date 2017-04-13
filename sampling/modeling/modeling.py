@@ -32,12 +32,6 @@ sampleobjects = []
 m = IMP.Model()
 simo = IMP.pmi.representation.Representation(m,upperharmonic=True,disorderedlength=False)
 
-# We used Phyre2 to generate a model for med16
-simo.add_metadata(IMP.pmi.metadata.Software(
-          name='Phyre2', classification='protein homology modeling',
-          description='Protein Homology/analogY Recognition Engine V 2.0',
-          version='2.0',
-          url='http://www.sbg.bio.ic.ac.uk/~phyre2/'))
 # Protein Prospector was used to assign the CX-MS data
 simo.add_metadata(IMP.pmi.metadata.Software(
           name='Protein Prospector', classification='mass spectrometry',
