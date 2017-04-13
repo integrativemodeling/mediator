@@ -2,6 +2,7 @@ REMARK  99  Chain ID : 1
 REMARK  99  Residues : 361
 REMARK  99  Atoms    : 3263
 REMARK  99  File     : c4bzkA_.1.pdb.sc
+REMARK   6 TEMPLATE: 4bzkA 13:A - 334:A MODELS 8:A - 538:A AT 11%
 ATOM      1  N   MET A   8     222.468  49.306 157.798  1.00  0.00           N  
 ATOM      2  CA  MET A   8     221.364  50.140 158.235  1.00  0.00           C  
 ATOM      3  C   MET A   8     220.018  49.412 158.245  1.00  0.00           C  
