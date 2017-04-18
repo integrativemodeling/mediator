@@ -72,16 +72,6 @@ fastadirectory="../fasta_files/"
 pdbdirectory="../pdb_files/"
 gmmdirectory="../model_gmm_files/"
 headpdb="head_module_em_aligned_translated.pdb"
-midpdb="cr_mid_fullmed10.pdb"
-
-# Add metadata to explain how we generated these PDB files;
-# Middle is a combination of several X-ray structures and comparative models
-l = IMP.pmi.metadata.FileLocation(pdbdirectory+midpdb,
-             details="""This combines structures of Med7C-Med21 and Med7N-Med31
-from X-ray structures, with Med4-Med9 and the first 540 residues of Med16
-from comparative models.""")
-d = IMP.pmi.metadata.ComparativeModelDataset(l)
-simo.set_file_dataset(pdbdirectory+midpdb, d)
 
 xlmsdirectory="../CXMS_files/"
 
@@ -96,15 +86,15 @@ domains_head=   [("med6",  "med6_1",    0.10,  fastadirectory+"med6.fasta",  "me
                  ("med20", "med20_1",   0.60,  fastadirectory+"med20.fasta", "med20",  pdbdirectory+headpdb,   "F",   (1,210,0),     None,       20,      None,         None,     20,   gmmdirectory+"med20_1.txt",  gmmdirectory+"med20_1.mrc",   None),
                  ("med22", "med22_1",   0.70,  fastadirectory+"med22.fasta", "med22",  pdbdirectory+headpdb,   "D",   (1,121,0),     None,       20,      None,         None,     6,    gmmdirectory+"med22_1.txt",  gmmdirectory+"med22_1.mrc",   None)]
 
-domains_middle= [("med4",  "med4_1",    0.10,  fastadirectory+"med4.fasta",  "med4",   pdbdirectory+midpdb,   "D",    (1,131,0),    True,       20,      1,         [19,1,2],     2,   gmmdirectory+"med4_1.txt",  gmmdirectory+"med4_1.mrc",   [0]),
+domains_middle= [("med4",  "med4_1",    0.10,  fastadirectory+"med4.fasta",  "med4",   pdbdirectory+'med4_med9.pdb',   "D",    (1,131,0),    True,       20,      1,         [19,1,2],     2,   gmmdirectory+"med4_1.txt",  gmmdirectory+"med4_1.mrc",   [0]),
                  ("med4",  "med4_2",    0.10,  fastadirectory+"med4.fasta",  "med4",   "BEADS",               None,   (132,284,0),  True,       20,      2,         [19,1,2],     0,   None,  None,   [0]),
-                 ("med7",  "med7_1",    0.20,  fastadirectory+"med7.fasta",  "med7",   pdbdirectory+midpdb,   "G",    (1,84,0),     True,       20,      3,         [19,1,3],     2,   gmmdirectory+"med7_1.txt",  gmmdirectory+"med7_1.mrc",   [1]),
+                 ("med7",  "med7_1",    0.20,  fastadirectory+"med7.fasta",  "med7",   pdbdirectory+'med7n_med31.pdb',   "A",    (1,84,0),     True,       20,      3,         [19,1,3],     2,   gmmdirectory+"med7_1.txt",  gmmdirectory+"med7_1.mrc",   [1]),
                  ("med7",  "med7_2",    0.20,  fastadirectory+"med7.fasta",  "med7",   "BEADS",               None,   (85,111,0),   True,       20,      4,         [19,1,3],     1,   None,  None,   [1]),
-                 ("med7",  "med7_3",    0.20,  fastadirectory+"med7.fasta",  "med7",   pdbdirectory+midpdb,   "G",    (112,222,0),  True,       20,      5,         [19,1,3],     2,   gmmdirectory+"med7_3.txt",  gmmdirectory+"med7_3.mrc",   [1]),
+                 ("med7",  "med7_3",    0.20,  fastadirectory+"med7.fasta",  "med7",   pdbdirectory+'med7c_med21.pdb',   "A",    (112,222,0),  True,       20,      5,         [19,1,3],     2,   gmmdirectory+"med7_3.txt",  gmmdirectory+"med7_3.mrc",   [1]),
                  ("med9",  "med9_1",    0.30,  fastadirectory+"med9.fasta",  "med9",   "BEADS",               None,   (1,64,0),     True,       20,      6,         [19,1,4],     0,   None,  None,   [2]),
-                 ("med9",  "med9_6",    0.30,  fastadirectory+"med9.fasta",  "med9",   pdbdirectory+midpdb,   "I",    (65,149,0),   True,       20,      1,         [19,1,4],     2,   gmmdirectory+"med9_6.txt",  gmmdirectory+"med9_6.mrc",   [2]),
-                 ("med31", "med31_1",   0.80,  fastadirectory+"med31.fasta", "med31",  pdbdirectory+midpdb,   "Z",    (1,127,0),    True,       20,      3,         [19,1,5],     3,   gmmdirectory+"med31_1.txt",  gmmdirectory+"med31_1.mrc",   None),
-                 ("med21", "med21_1",   0.50,  fastadirectory+"med21.fasta", "med21",  pdbdirectory+midpdb,   "U",    (1,140,0),    True,       20,      5,         [19,1,6],     3,   gmmdirectory+"med21_1.txt",  gmmdirectory+"med21_1.mrc",   None),
+                 ("med9",  "med9_6",    0.30,  fastadirectory+"med9.fasta",  "med9",   pdbdirectory+'med4_med9.pdb',   "I",    (65,149,0),   True,       20,      1,         [19,1,4],     2,   gmmdirectory+"med9_6.txt",  gmmdirectory+"med9_6.mrc",   [2]),
+                 ("med31", "med31_1",   0.80,  fastadirectory+"med31.fasta", "med31",  pdbdirectory+'med7n_med31.pdb',   "B",    (1,127,0),    True,       20,      3,         [19,1,5],     3,   gmmdirectory+"med31_1.txt",  gmmdirectory+"med31_1.mrc",   None),
+                 ("med21", "med21_1",   0.50,  fastadirectory+"med21.fasta", "med21",  pdbdirectory+'med7c_med21.pdb',   "B",    (1,140,0),    True,       20,      5,         [19,1,6],     3,   gmmdirectory+"med21_1.txt",  gmmdirectory+"med21_1.mrc",   None),
                  ("med10", "med10_1",   0.60,  fastadirectory+"med10.fasta", "med10",  "BEADS",               None,   (1,157,0),    True,       20,      8,         [19,1,7],     0,   None,  None,   [5]),
                  ("med1",  "med1_1",    0.70,  fastadirectory+"med1.fasta",  "med1",   "BEADS",               None,   (1,566,0),    True,       20,      9,         [19,1,8],     0,   None,  None,   [6]),
                  ("med14",  "med14_1",  1.00,  fastadirectory+"med14.fasta", "med14",  "BEADS",               None,   (1,711,0),    True,       20,      10,        [19,1,9],     0,   None,  None,   [7]),
