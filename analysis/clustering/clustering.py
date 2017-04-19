@@ -32,11 +32,10 @@ mc=IMP.pmi.macros.AnalysisReplicaExchange0(model,
 							   "../../run31/modeling.split_density.scale_radii.two_bayesian_classes-1.19",
 							   "../../run31/modeling.split_density.scale_radii.two_bayesian_classes-1.20"],                                                                                                    
                                         global_output_directory="./output/") # don't change
-
-
-
-
-
+if '--mmcif' in sys.argv:
+    mc.test_mode = simo.dry_run
+    for po in simo.protocol_output:
+        mc.add_protocol_output(po)
 
 # fields that have to be extracted for the stat file
 

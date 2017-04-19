@@ -4,6 +4,8 @@ import IMP.algebra
 import IMP.atom
 import IMP.container
 
+import IMP.pmi.mmcif
+import IMP.pmi.metadata
 import IMP.pmi.restraints.crosslinking
 import IMP.pmi.restraints.stereochemistry
 import IMP.pmi.restraints.em
@@ -30,12 +32,46 @@ sampleobjects = []
 m = IMP.Model()
 simo = IMP.pmi.representation.Representation(m,upperharmonic=True,disorderedlength=False)
 
+# Protein Prospector was used to assign the CX-MS data
+simo.add_metadata(IMP.pmi.metadata.Software(
+          name='Protein Prospector', classification='mass spectrometry',
+          description='Proteomics tools for mining sequence databases '
+                      'in conjunction with Mass Spectrometry experiments.',
+          version='5.13.1',
+          url='http://prospector.ucsf.edu/'))
+# We used Situs to dock the Head module into an EM map
+simo.add_metadata(IMP.pmi.metadata.Software(
+          name='Situs', classification='density map fitting',
+          description='Modeling of atomic resolution structures into '
+                      'low-resolution density maps',
+          version='2.7',
+          url='http://situs.biomachina.org/'))
+simo.add_metadata(IMP.pmi.metadata.Citation(
+          pmid='26402457',
+          title="Molecular architecture of the yeast Mediator complex.",
+          journal="Elife", volume=4, page_range='e08719',
+          year=2015,
+          authors=['Robinson PJ', 'Trnka MJ', 'Pellarin R', 'Greenberg CH',
+                   'Bushnell DA', 'Davis R', 'Burlingame AL', 'Sali A',
+                   'Kornberg RD'],
+          doi='10.7554/eLife.08719'))
+simo.add_metadata(IMP.pmi.metadata.Repository(
+          doi="10.5281/zenodo.160593", root="../..",
+          url="https://zenodo.org/record/160593/files/integrativemodeling/"
+              "mediator-v1.0.1.zip",
+          top_directory="integrativemodeling-mediator-a04b197"))
+
+if '--mmcif' in sys.argv:
+    # Record the modeling protocol to an mmCIF file
+    po = IMP.pmi.mmcif.ProtocolOutput(open('mediator.cif', 'w'))
+    simo.add_protocol_output(po)
+
+simo.dry_run = '--dry-run' in sys.argv
+
 fastadirectory="../fasta_files/"
 pdbdirectory="../pdb_files/"
 gmmdirectory="../model_gmm_files/"
 headpdb="head_module_em_aligned_translated.pdb"
-midpdb="cr_mid_fullmed10.pdb"
-
 
 xlmsdirectory="../CXMS_files/"
 
@@ -50,15 +86,15 @@ domains_head=   [("med6",  "med6_1",    0.10,  fastadirectory+"med6.fasta",  "me
                  ("med20", "med20_1",   0.60,  fastadirectory+"med20.fasta", "med20",  pdbdirectory+headpdb,   "F",   (1,210,0),     None,       20,      None,         None,     20,   gmmdirectory+"med20_1.txt",  gmmdirectory+"med20_1.mrc",   None),
                  ("med22", "med22_1",   0.70,  fastadirectory+"med22.fasta", "med22",  pdbdirectory+headpdb,   "D",   (1,121,0),     None,       20,      None,         None,     6,    gmmdirectory+"med22_1.txt",  gmmdirectory+"med22_1.mrc",   None)]
 
-domains_middle= [("med4",  "med4_1",    0.10,  fastadirectory+"med4.fasta",  "med4",   pdbdirectory+midpdb,   "D",    (1,131,0),    True,       20,      1,         [19,1,2],     2,   gmmdirectory+"med4_1.txt",  gmmdirectory+"med4_1.mrc",   [0]),
+domains_middle= [("med4",  "med4_1",    0.10,  fastadirectory+"med4.fasta",  "med4",   pdbdirectory+'med4_med9.pdb',   "D",    (1,131,0),    True,       20,      1,         [19,1,2],     2,   gmmdirectory+"med4_1.txt",  gmmdirectory+"med4_1.mrc",   [0]),
                  ("med4",  "med4_2",    0.10,  fastadirectory+"med4.fasta",  "med4",   "BEADS",               None,   (132,284,0),  True,       20,      2,         [19,1,2],     0,   None,  None,   [0]),
-                 ("med7",  "med7_1",    0.20,  fastadirectory+"med7.fasta",  "med7",   pdbdirectory+midpdb,   "G",    (1,84,0),     True,       20,      3,         [19,1,3],     2,   gmmdirectory+"med7_1.txt",  gmmdirectory+"med7_1.mrc",   [1]),
+                 ("med7",  "med7_1",    0.20,  fastadirectory+"med7.fasta",  "med7",   pdbdirectory+'med7n_med31.pdb',   "A",    (1,84,0),     True,       20,      3,         [19,1,3],     2,   gmmdirectory+"med7_1.txt",  gmmdirectory+"med7_1.mrc",   [1]),
                  ("med7",  "med7_2",    0.20,  fastadirectory+"med7.fasta",  "med7",   "BEADS",               None,   (85,111,0),   True,       20,      4,         [19,1,3],     1,   None,  None,   [1]),
-                 ("med7",  "med7_3",    0.20,  fastadirectory+"med7.fasta",  "med7",   pdbdirectory+midpdb,   "G",    (112,222,0),  True,       20,      5,         [19,1,3],     2,   gmmdirectory+"med7_3.txt",  gmmdirectory+"med7_3.mrc",   [1]),
+                 ("med7",  "med7_3",    0.20,  fastadirectory+"med7.fasta",  "med7",   pdbdirectory+'med7c_med21.pdb',   "A",    (112,222,0),  True,       20,      5,         [19,1,3],     2,   gmmdirectory+"med7_3.txt",  gmmdirectory+"med7_3.mrc",   [1]),
                  ("med9",  "med9_1",    0.30,  fastadirectory+"med9.fasta",  "med9",   "BEADS",               None,   (1,64,0),     True,       20,      6,         [19,1,4],     0,   None,  None,   [2]),
-                 ("med9",  "med9_6",    0.30,  fastadirectory+"med9.fasta",  "med9",   pdbdirectory+midpdb,   "I",    (65,149,0),   True,       20,      1,         [19,1,4],     2,   gmmdirectory+"med9_6.txt",  gmmdirectory+"med9_6.mrc",   [2]),
-                 ("med31", "med31_1",   0.80,  fastadirectory+"med31.fasta", "med31",  pdbdirectory+midpdb,   "Z",    (1,127,0),    True,       20,      3,         [19,1,5],     3,   gmmdirectory+"med31_1.txt",  gmmdirectory+"med31_1.mrc",   None),
-                 ("med21", "med21_1",   0.50,  fastadirectory+"med21.fasta", "med21",  pdbdirectory+midpdb,   "U",    (1,140,0),    True,       20,      5,         [19,1,6],     3,   gmmdirectory+"med21_1.txt",  gmmdirectory+"med21_1.mrc",   None),
+                 ("med9",  "med9_6",    0.30,  fastadirectory+"med9.fasta",  "med9",   pdbdirectory+'med4_med9.pdb',   "I",    (65,149,0),   True,       20,      1,         [19,1,4],     2,   gmmdirectory+"med9_6.txt",  gmmdirectory+"med9_6.mrc",   [2]),
+                 ("med31", "med31_1",   0.80,  fastadirectory+"med31.fasta", "med31",  pdbdirectory+'med7n_med31.pdb',   "B",    (1,127,0),    True,       20,      3,         [19,1,5],     3,   gmmdirectory+"med31_1.txt",  gmmdirectory+"med31_1.mrc",   None),
+                 ("med21", "med21_1",   0.50,  fastadirectory+"med21.fasta", "med21",  pdbdirectory+'med7c_med21.pdb',   "B",    (1,140,0),    True,       20,      5,         [19,1,6],     3,   gmmdirectory+"med21_1.txt",  gmmdirectory+"med21_1.mrc",   None),
                  ("med10", "med10_1",   0.60,  fastadirectory+"med10.fasta", "med10",  "BEADS",               None,   (1,157,0),    True,       20,      8,         [19,1,7],     0,   None,  None,   [5]),
                  ("med1",  "med1_1",    0.70,  fastadirectory+"med1.fasta",  "med1",   "BEADS",               None,   (1,566,0),    True,       20,      9,         [19,1,8],     0,   None,  None,   [6]),
                  ("med14",  "med14_1",  1.00,  fastadirectory+"med14.fasta", "med14",  "BEADS",               None,   (1,711,0),    True,       20,      10,        [19,1,9],     0,   None,  None,   [7]),
@@ -69,7 +105,7 @@ domains_tail=   [("med2",  "med2_1",    0.00,  fastadirectory+"med2.fasta",  "me
                  ("med3",  "med3_1",    0.20,  fastadirectory+"med3.fasta",  "med3",   "BEADS",               None,   (1,401,0),     True,       40,      14,         [19,12,14],     0,   None,  None,   [14]),
                  ("med5",  "med5_1",    0.40,  fastadirectory+"med5.fasta",  "med5",   "BEADS",               None,   (1,1146,0),    True,      40,      15,         [19,12,15],     0,   None,  None,   [15]),
                  ("med15", "med15_1",   0.60,  fastadirectory+"med15.fasta", "med15",  "BEADS",               None,   (1,1094,0),    True,      40,      16,         [19,12,16],     0,   None,  None,   [16]),
-                 ("med16", "med16_1",   0.80,  fastadirectory+"med16.fasta", "med16",  pdbdirectory+"med16.NTD.phyre.model.pdb",    " ",   (8,538,0),    True,      40,      19,         [19,12,17],     10,   gmmdirectory+"med16_1.txt",  gmmdirectory+"med16_1.mrc",   [20]),
+                 ("med16", "med16_1",   0.80,  fastadirectory+"med16.fasta", "med16",  pdbdirectory+"med16.NTD.phyre.model.pdb",    "A",   (8,538,0),    True,      40,      19,         [19,12,17],     10,   gmmdirectory+"med16_1.txt",  gmmdirectory+"med16_1.mrc",   [20]),
                  ("med16", "med16_2",   0.80,  fastadirectory+"med16.fasta", "med16",  "BEADS",               None,   (539,986,0),     True,       40,      17,         [19,12,17],     0,   None,  None,   [17]),
                  ("med14",  "med14_2",  1.00,  fastadirectory+"med14.fasta", "med14",  "BEADS",               None,   (712,1082,0),  True,        40,      10,         [19,1,9],     0,   None,  None,   [7])]
 
@@ -129,6 +165,13 @@ xl = IMP.pmi.restraints.crosslinking.ISDCrossLinkMS(simo,
                                    resolution=1.0,
                                    label="DSS",
                                    csvfile=True)
+# Point to the raw mass spec data and peaklists used to derive the crosslinks.
+l = IMP.pmi.metadata.MassIVELocation('MSV000079237',
+                         details='All raw mass spectrometry files and '
+                                 'peaklists used in the study')
+d = IMP.pmi.metadata.MassSpecDataset(location=l)
+xl.dataset.add_primary(d)
+
 xl.add_to_model()
 sampleobjects.append(xl)
 outputobjects.append(xl)
@@ -143,7 +186,14 @@ middle_mass=sum((IMP.atom.Mass(p).get_mass() for h in resdensities_middle for p 
 gemh = IMP.pmi.restraints.em.GaussianEMRestraint(resdensities_middle,'../em_map_files/asturias_middle_module_translated_resampled.mrc.gmm.29.txt',
                                                target_mass_scale=middle_mass,
                                                 slope=0.000001,
-                                                target_radii_scale=3.0)
+                                                target_radii_scale=3.0,
+                                                representation=simo)
+gemh.dataset.location.details = 'Segmented map covering the middle module'
+# Point to the original map in EMDB before we processed it
+l = IMP.pmi.metadata.EMDBLocation('EMD-2634')
+emdb = IMP.pmi.metadata.EMDensityDataset(location=l)
+gemh.dataset.add_primary(emdb)
+
 gemh.add_to_model()
 gemh.set_weight(100.0)
 #gem.center_model_on_target_density(simo)
@@ -156,7 +206,12 @@ tail_mass=sum((IMP.atom.Mass(p).get_mass() for h in resdensities_tail for p in I
 gemt = IMP.pmi.restraints.em.GaussianEMRestraint(resdensities_tail,'../em_map_files/asturias_tail_module_translated_resampled.mrc.gmm.49.txt',
                                                target_mass_scale=tail_mass,
                                                 slope=0.000001,
-                                                target_radii_scale=3.0)
+                                                target_radii_scale=3.0,
+                                                representation=simo)
+gemt.dataset.location.details = 'Segmented map covering the tail module'
+# This map was generated from the same EMDB entry as above
+gemt.dataset.add_primary(emdb)
+
 gemt.add_to_model()
 gemt.set_weight(100.0)
 #gem.center_model_on_target_density(simo)
@@ -184,5 +239,16 @@ mc1=IMP.pmi.macros.ReplicaExchange0(m,
                                     global_output_directory="output",
                                     rmf_dir="rmfs/",
                                     best_pdb_dir="pdbs/",
-                                    replica_stat_file_suffix="stat_replica")
+                                    replica_stat_file_suffix="stat_replica",
+                                    test_mode=simo.dry_run)
 mc1.execute_macro()
+
+if '--mmcif' in sys.argv:
+    # Add clustering info to the mmCIF file
+    os.chdir('../../analysis/clustering')
+    loc = IMP.pmi.metadata.FileLocation('clustering.py',
+                        details='Main clustering and analysis script')
+    simo.add_metadata(IMP.pmi.metadata.PythonScript(location=loc))
+    with open('clustering.py') as fh:
+        exec(fh.read())
+    po.flush()
