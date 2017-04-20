@@ -18,6 +18,8 @@ import IMP.pmi.macros
 
 import os
 import sys
+sys.path.append('../../util/')
+import make_archive
 
 # setting up parameters
 
@@ -55,11 +57,17 @@ simo.add_metadata(IMP.pmi.metadata.Citation(
                    'Bushnell DA', 'Davis R', 'Burlingame AL', 'Sali A',
                    'Kornberg RD'],
           doi='10.7554/eLife.08719'))
+for subdir, zipname in make_archive.ARCHIVES.items():
+    simo.add_metadata(IMP.pmi.metadata.Repository(
+          doi="10.5281/zenodo.556216", root="../../%s" % subdir,
+          url="https://zenodo.org/record/556216/files/integrativemodeling/"
+              "%s.zip" % zipname,
+          top_directory=os.path.basename(subdir)))
 simo.add_metadata(IMP.pmi.metadata.Repository(
-          doi="10.5281/zenodo.160593", root="../..",
-          url="https://zenodo.org/record/160593/files/integrativemodeling/"
-              "mediator-v1.0.1.zip",
-          top_directory="integrativemodeling-mediator-a04b197"))
+          doi="10.5281/zenodo.556216", root="../..",
+          url="https://zenodo.org/record/556216/files/integrativemodeling/"
+              "mediator-v1.0.2.zip",
+          top_directory="mediator-v1.0.2"))
 
 if '--mmcif' in sys.argv:
     # Record the modeling protocol to an mmCIF file
