@@ -9,9 +9,10 @@ archives containing trajectories just to get a small file like a Python
 script or alignment.
 """
 
-from __future__ import print_function
+from __future__ import print_function, division
 import sys
 import os
+import hashlib
 import shutil
 import subprocess
 
@@ -28,6 +29,21 @@ ARCHIVES = {
 }
 
 REPO="mediator"
+
+def md5(fname):
+    hash_md5 = hashlib.md5()
+    with open(fname, "rb") as f:
+        for chunk in iter(lambda: f.read(65536), b""):
+            hash_md5.update(chunk)
+    return hash_md5.hexdigest()
+
+def format_size(b):
+    suffixes = ['B', 'KiB', 'MiB', 'GiB']
+    for s in suffixes:
+        if b < 1024:
+            return "%.2f %s" % (b, s)
+        b /= 1024
+    return "%.2f TiB" % b
 
 class Archiver(object):
     ARCHIVE_DIR = "for_archival"
@@ -70,7 +86,10 @@ at the same DOI where this archive is available.
         shutil.rmtree(self.topdir)
 
     def summarize(self):
-        subprocess.check_call('md5sum *.zip', shell=True, cwd=self.ARCHIVE_DIR)
+        for fname in sorted(os.listdir(self.ARCHIVE_DIR)):
+            fullname = os.path.join(self.ARCHIVE_DIR, fname)
+            sz = os.stat(fullname).st_size
+            print("%s %-10s %s" % (md5(fullname), format_size(sz), fname))
         print("zip files created in %s. Upload them and then"
               % self.ARCHIVE_DIR)
         print("delete that directory.")
