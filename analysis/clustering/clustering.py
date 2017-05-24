@@ -129,17 +129,15 @@ mc.clustering("SimplifiedModel_Total_Score_None",  # don't change, field where t
               voxel_size=3.0,                                # voxel size of the mrc files
               density_custom_ranges=reduced_density_dict)    # setup the list of densities to be calculated
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+if '--mmcif' in sys.argv:
+    # Point to deposited ensembles in DCD format
+    dcds = []
+    for i in range(nclusters):
+        r = IMP.pmi.metadata.Repository(doi="10.5281/zenodo.556216",
+             url="https://zenodo.org/record/556216/files/cluster.%d.dcd" % i)
+        dcds.append(IMP.pmi.metadata.FileLocation(path='.', repo=r,
+                            details="All models in cluster %d" % (i+1)))
+    for po in simo.protocol_output:
+        if hasattr(po, 'set_ensemble_file'):
+            for i, dcd in enumerate(dcds):
+                po.set_ensemble_file(i, dcd)
