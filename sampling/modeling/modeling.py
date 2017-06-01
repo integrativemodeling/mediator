@@ -194,6 +194,7 @@ gemh = IMP.pmi.restraints.em.GaussianEMRestraint(resdensities_middle,'../em_map_
                                                 slope=0.000001,
                                                 target_radii_scale=3.0,
                                                 representation=simo)
+gemh.set_label('middle')
 gemh.dataset.location.details = 'Segmented map covering the middle module'
 # Point to the original map in EMDB before we processed it
 l = IMP.pmi.metadata.EMDBLocation('EMD-2634')
@@ -214,6 +215,7 @@ gemt = IMP.pmi.restraints.em.GaussianEMRestraint(resdensities_tail,'../em_map_fi
                                                 slope=0.000001,
                                                 target_radii_scale=3.0,
                                                 representation=simo)
+gemt.set_label('tail')
 gemt.dataset.location.details = 'Segmented map covering the tail module'
 # This map was generated from the same EMDB entry as above
 gemt.dataset.add_primary(emdb)

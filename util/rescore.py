@@ -156,6 +156,7 @@ gemh = IMP.pmi.restraints.em.GaussianEMRestraint(resdensities_middle,'../samplin
                                                 target_radii_scale=3.0,
                                                 representation=simo)
 
+gemh.set_label('middle')
 gemh.add_to_model()
 gemh.set_weight(100.0)
 #gem.center_model_on_target_density(simo)
@@ -171,6 +172,7 @@ gemt = IMP.pmi.restraints.em.GaussianEMRestraint(resdensities_tail,'../sampling/
                                                 target_radii_scale=3.0,
                                                 representation=simo)
 
+gemt.set_label('tail')
 gemt.add_to_model()
 gemt.set_weight(100.0)
 #gem.center_model_on_target_density(simo)
