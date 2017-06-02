@@ -133,8 +133,8 @@ if '--mmcif' in sys.argv:
     # Point to deposited ensembles in DCD format
     dcds = []
     for i in range(nclusters):
-        r = IMP.pmi.metadata.Repository(doi="10.5281/zenodo.556216",
-             url="https://zenodo.org/record/556216/files/cluster.%d.dcd" % i)
+        r = IMP.pmi.metadata.Repository(doi="10.5281/zenodo.801880",
+             url="https://zenodo.org/record/801880/files/cluster.%d.dcd" % i)
         dcds.append(IMP.pmi.metadata.FileLocation(path='.', repo=r,
                             details="All models in cluster %d" % (i+1)))
     for po in simo.protocol_output:
