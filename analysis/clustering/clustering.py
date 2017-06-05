@@ -11,6 +11,9 @@ mc=IMP.pmi.macros.AnalysisReplicaExchange0(model,
                                         stat_file_name_suffix="stat",     # don't change
                                         merge_directories=[ # change this list splitting the runs or adding new runs
                  "../../sampling/modeling/",
+                 # These runs were used in the actual publication, and are
+                 # archived as run20.tar.xz, run28.tar.xz and run31.tar.xz
+                 # at https://doi.org/10.5281/zenodo.802915
                  "../../run20/modeling.split_density.scale_radii.two_bayesian_classes-1.1",
 							   "../../run20/modeling.split_density.scale_radii.two_bayesian_classes-1.2",
 							   "../../run20/modeling.split_density.scale_radii.two_bayesian_classes-1.3",
