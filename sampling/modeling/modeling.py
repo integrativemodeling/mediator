@@ -59,12 +59,12 @@ simo.add_metadata(IMP.pmi.metadata.Citation(
           doi='10.7554/eLife.08719'))
 for subdir, zipname in make_archive.ARCHIVES.items():
     simo.add_metadata(IMP.pmi.metadata.Repository(
-          doi="10.5281/zenodo.801880", root="../../%s" % subdir,
-          url="https://zenodo.org/record/801880/files/%s.zip" % zipname,
+          doi="10.5281/zenodo.802915", root="../../%s" % subdir,
+          url="https://zenodo.org/record/802915/files/%s.zip" % zipname,
           top_directory=os.path.basename(subdir)))
 simo.add_metadata(IMP.pmi.metadata.Repository(
-          doi="10.5281/zenodo.801880", root="../..",
-          url="https://zenodo.org/record/801880/files/mediator-v1.0.3.zip",
+          doi="10.5281/zenodo.802915", root="../..",
+          url="https://zenodo.org/record/802915/files/mediator-v1.0.3.zip",
           top_directory="mediator-v1.0.3"))
 
 if '--mmcif' in sys.argv:

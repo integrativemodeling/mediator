@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.801880.svg)](http://dx.doi.org/10.5281/zenodo.801880)
+[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.802915.svg)](http://dx.doi.org/10.5281/zenodo.802915)
 
 The 21-subunit Mediator complex transduces regulatory information from
 enhancers to promoters, and performs an essential role in the initiation
