@@ -4,4 +4,5 @@ pmid: 26402457
 prereqs: [modeller, python/scikit, python/matplotlib]
 test:
     runtime: 24h
+    memory: 4G
     build: release
