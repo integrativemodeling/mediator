@@ -71,6 +71,8 @@ if '--mmcif' in sys.argv:
     # Record the modeling protocol to an mmCIF file
     po = IMP.pmi.mmcif.ProtocolOutput(open('mediator.cif', 'w'))
     simo.add_protocol_output(po)
+    if hasattr(po, 'system'): # po.system needs IMP >= 2.9
+        po.system.title = 'Molecular architecture of the yeast Mediator complex'
 
 simo.dry_run = '--dry-run' in sys.argv
 
