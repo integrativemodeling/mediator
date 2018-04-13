@@ -29,5 +29,17 @@ class Tests(unittest.TestCase):
         os.unlink('kmeans_weight_500_4/cluster.0/rmsf.med15.dat')
         os.unlink('kmeans_weight_500_4/cluster.0/rmsf.med15.pdf')
 
+    def test_mmcif(self):
+        """Test generation of mmCIF output"""
+        os.chdir(os.path.join(TOPDIR, 'sampling', 'modeling'))
+        if os.path.exists("mediator.cif"):
+            os.unlink("mediator.cif")
+        p = subprocess.check_call(
+                ["python", "modeling.py", "--mmcif", "--dry-run"])
+        # Check size of output file
+        with open("mediator.cif") as fh:
+            wcl = len(fh.readlines())
+        self.assertEqual(wcl, 55376)
+
 if __name__ == '__main__':
     unittest.main()
