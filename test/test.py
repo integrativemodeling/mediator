@@ -15,8 +15,8 @@ class Tests(unittest.TestCase):
         p = subprocess.check_call(["python", 'modeling.py', "--test"])
         # todo: assert outputs
         os.chdir(os.path.join(TOPDIR, 'analysis', 'clustering'))
-        # Remove pregenerated outputs
-        shutil.rmtree('kmeans_weight_500_4')
+        # Back up pregenerated outputs (needed for mmCIF test)
+        os.rename('kmeans_weight_500_4', 'pregen-outputs')
         p = subprocess.check_call(["python", 'clustering.py', '--test'])
         p = subprocess.check_call(["python", 'precision_rmsf.py', '--test'])
         p = subprocess.check_call(["python", 'XL_table.py'])
@@ -28,6 +28,9 @@ class Tests(unittest.TestCase):
         os.unlink('kmeans_weight_500_4/cluster.0/XL_table_tail.pdf')
         os.unlink('kmeans_weight_500_4/cluster.0/rmsf.med15.dat')
         os.unlink('kmeans_weight_500_4/cluster.0/rmsf.med15.pdf')
+        # Put back pregenerated outputs
+        shutil.rmtree('kmeans_weight_500_4')
+        os.rename('pregen-outputs', 'kmeans_weight_500_4')
 
     def test_mmcif(self):
         """Test generation of mmCIF output"""
