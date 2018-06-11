@@ -39,7 +39,7 @@ class Tests(unittest.TestCase):
         # Check size of output file
         with open("mediator.cif") as fh:
             wcl = len(fh.readlines())
-        self.assertEqual(wcl, 55376)
+        self.assertEqual(wcl, 55435)
 
 if __name__ == '__main__':
     unittest.main()
