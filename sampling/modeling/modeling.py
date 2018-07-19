@@ -4,8 +4,8 @@ import IMP.algebra
 import IMP.atom
 import IMP.container
 
+import ihm
 import IMP.pmi.mmcif
-import IMP.pmi.metadata
 import IMP.pmi.restraints.crosslinking
 import IMP.pmi.restraints.stereochemistry
 import IMP.pmi.restraints.em
@@ -35,20 +35,20 @@ m = IMP.Model()
 simo = IMP.pmi.representation.Representation(m,upperharmonic=True,disorderedlength=False)
 
 # Protein Prospector was used to assign the CX-MS data
-simo.add_metadata(IMP.pmi.metadata.Software(
+simo.add_metadata(ihm.Software(
           name='Protein Prospector', classification='mass spectrometry',
           description='Proteomics tools for mining sequence databases '
                       'in conjunction with Mass Spectrometry experiments.',
           version='5.13.1',
-          url='http://prospector.ucsf.edu/'))
+          location='http://prospector.ucsf.edu/'))
 # We used Situs to dock the Head module into an EM map
-simo.add_metadata(IMP.pmi.metadata.Software(
+simo.add_metadata(ihm.Software(
           name='Situs', classification='density map fitting',
           description='Modeling of atomic resolution structures into '
                       'low-resolution density maps',
           version='2.7',
-          url='http://situs.biomachina.org/'))
-simo.add_metadata(IMP.pmi.metadata.Citation(
+          location='http://situs.biomachina.org/'))
+simo.add_metadata(ihm.Citation(
           pmid='26402457',
           title="Molecular architecture of the yeast Mediator complex.",
           journal="Elife", volume=4, page_range='e08719',
@@ -58,11 +58,11 @@ simo.add_metadata(IMP.pmi.metadata.Citation(
                    'Kornberg RD'],
           doi='10.7554/eLife.08719'))
 for subdir, zipname in make_archive.ARCHIVES.items():
-    simo.add_metadata(IMP.pmi.metadata.Repository(
+    simo.add_metadata(ihm.location.Repository(
           doi="10.5281/zenodo.802915", root="../../%s" % subdir,
           url="https://zenodo.org/record/802915/files/%s.zip" % zipname,
           top_directory=os.path.basename(subdir)))
-simo.add_metadata(IMP.pmi.metadata.Repository(
+simo.add_metadata(ihm.location.Repository(
           doi="10.5281/zenodo.802915", root="../..",
           url="https://zenodo.org/record/802915/files/mediator-v1.0.3.zip",
           top_directory="mediator-v1.0.3"))
@@ -71,8 +71,7 @@ if '--mmcif' in sys.argv:
     # Record the modeling protocol to an mmCIF file
     po = IMP.pmi.mmcif.ProtocolOutput(open('mediator.cif', 'w'))
     simo.add_protocol_output(po)
-    if hasattr(po, 'system'): # po.system needs IMP >= 2.9
-        po.system.title = 'Molecular architecture of the yeast Mediator complex'
+    po.system.title = 'Molecular architecture of the yeast Mediator complex'
 
 simo.dry_run = '--dry-run' in sys.argv
 
@@ -174,10 +173,10 @@ xl = IMP.pmi.restraints.crosslinking.ISDCrossLinkMS(simo,
                                    label="DSS",
                                    csvfile=True)
 # Point to the raw mass spec data and peaklists used to derive the crosslinks.
-l = IMP.pmi.metadata.MassIVELocation('MSV000079237',
+l = ihm.location.MassIVELocation('MSV000079237',
                          details='All raw mass spectrometry files and '
                                  'peaklists used in the study')
-d = IMP.pmi.metadata.MassSpecDataset(location=l)
+d = ihm.dataset.MassSpecDataset(location=l)
 xl.dataset.add_primary(d)
 
 xl.add_to_model()
@@ -199,8 +198,8 @@ gemh = IMP.pmi.restraints.em.GaussianEMRestraint(resdensities_middle,'../em_map_
 gemh.set_label('middle')
 gemh.dataset.location.details = 'Segmented map covering the middle module'
 # Point to the original map in EMDB before we processed it
-l = IMP.pmi.metadata.EMDBLocation('EMD-2634')
-emdb = IMP.pmi.metadata.EMDensityDataset(location=l)
+l = ihm.location.EMDBLocation('EMD-2634')
+emdb = ihm.dataset.EMDensityDataset(location=l)
 gemh.dataset.add_primary(emdb)
 
 gemh.add_to_model()
@@ -256,9 +255,9 @@ mc1.execute_macro()
 if '--mmcif' in sys.argv:
     # Add clustering info to the mmCIF file
     os.chdir('../../analysis/clustering')
-    loc = IMP.pmi.metadata.FileLocation('clustering.py',
+    loc = ihm.location.WorkflowFileLocation('clustering.py',
                         details='Main clustering and analysis script')
-    simo.add_metadata(IMP.pmi.metadata.PythonScript(location=loc))
+    simo.add_metadata(loc)
     with open('clustering.py') as fh:
         exec(fh.read())
     po.flush()
