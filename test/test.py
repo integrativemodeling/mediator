@@ -65,8 +65,8 @@ class Tests(unittest.TestCase):
         self.assertEqual([len(e.densities) for e in s.ensembles], [25]*4)
         self.assertEqual([len(e.sequence) for e in s.entities],
                          [295, 223, 115, 687, 307, 210, 121, 284, 222, 149,
-                          127, 140, 157, 566, 1082, 220, 431, 397, 1146,
-                          1081, 974])
+                          127, 140, 157, 566, 1082, 220, 436, 401, 1146,
+                          1094, 986])
         self.assertEqual([a.details for a in s.asym_units],
                          ['med6', 'med8', 'med11', 'med17', 'med18', 'med20',
                           'med22', 'med4', 'med7', 'med9', 'med31', 'med21',
