@@ -5,16 +5,16 @@ import IMP.atom
 import IMP.container
 
 import ihm
-import IMP.pmi.mmcif
-import IMP.pmi.restraints.crosslinking
-import IMP.pmi.restraints.stereochemistry
-import IMP.pmi.restraints.em
-import IMP.pmi.restraints.basic
-import IMP.pmi.representation
-import IMP.pmi.tools
-import IMP.pmi.samplers
-import IMP.pmi.output
-import IMP.pmi.macros
+import IMP.pmi1.mmcif
+import IMP.pmi1.restraints.crosslinking
+import IMP.pmi1.restraints.stereochemistry
+import IMP.pmi1.restraints.em
+import IMP.pmi1.restraints.basic
+import IMP.pmi1.representation
+import IMP.pmi1.tools
+import IMP.pmi1.samplers
+import IMP.pmi1.output
+import IMP.pmi1.macros
 
 import os
 import sys
@@ -32,7 +32,7 @@ sampleobjects = []
 # setting up topology
 
 m = IMP.Model()
-simo = IMP.pmi.representation.Representation(m,upperharmonic=True,disorderedlength=False)
+simo = IMP.pmi1.representation.Representation(m,upperharmonic=True,disorderedlength=False)
 
 # Protein Prospector was used to assign the CX-MS data
 simo.add_metadata(ihm.Software(
@@ -69,7 +69,7 @@ simo.add_metadata(ihm.location.Repository(
 
 if '--mmcif' in sys.argv:
     # Record the modeling protocol to an mmCIF file
-    po = IMP.pmi.mmcif.ProtocolOutput(open('mediator.cif', 'w'))
+    po = IMP.pmi1.mmcif.ProtocolOutput(open('mediator.cif', 'w'))
     simo.add_protocol_output(po)
     po.system.title = 'Molecular architecture of the yeast Mediator complex'
 
@@ -121,7 +121,7 @@ domains_tail=   [("med2",  "med2_1",    0.00,  fastadirectory+"med2.fasta",  "me
 
 domains=domains_head+domains_middle+domains_tail
 
-bm=IMP.pmi.macros.BuildModel1(simo)
+bm=IMP.pmi1.macros.BuildModel1(simo)
 bm.build_model(domains)
 bm.scale_bead_radii(40,0.8)
 
@@ -143,7 +143,7 @@ sampleobjects.append(simo)
 
 # scoring function
 
-ev = IMP.pmi.restraints.stereochemistry.ExcludedVolumeSphere(simo,resolution=10)
+ev = IMP.pmi1.restraints.stereochemistry.ExcludedVolumeSphere(simo,resolution=10)
 ev.add_to_model()
 outputobjects.append(ev)
 
@@ -159,11 +159,11 @@ columnmap["Residue2"]='pep2.xlinked_aa'
 columnmap["IDScore"]='mod_type'
 columnmap["XLUniqueID"]='spec_id'
 
-ids_map=IMP.pmi.tools.map()
+ids_map=IMP.pmi1.tools.map()
 ids_map.set_map_element("intra_mod",0.01)
 ids_map.set_map_element("inter_mod",0.1)
 
-xl = IMP.pmi.restraints.crosslinking.ISDCrossLinkMS(simo,
+xl = IMP.pmi1.restraints.crosslinking.ISDCrossLinkMS(simo,
                                    xlmsdirectory+"/full_med_splitmods.txt",
                                    length=21.0,
                                    slope=0.01,
@@ -190,7 +190,7 @@ xl.set_psi_is_sampled(True)
 # middle module em density
 
 middle_mass=sum((IMP.atom.Mass(p).get_mass() for h in resdensities_middle for p in IMP.atom.get_leaves(h)))
-gemh = IMP.pmi.restraints.em.GaussianEMRestraint(resdensities_middle,'../em_map_files/asturias_middle_module_translated_resampled.mrc.gmm.29.txt',
+gemh = IMP.pmi1.restraints.em.GaussianEMRestraint(resdensities_middle,'../em_map_files/asturias_middle_module_translated_resampled.mrc.gmm.29.txt',
                                                target_mass_scale=middle_mass,
                                                 slope=0.000001,
                                                 target_radii_scale=3.0,
@@ -211,7 +211,7 @@ outputobjects.append(gemh)
 # tail module em density
 
 tail_mass=sum((IMP.atom.Mass(p).get_mass() for h in resdensities_tail for p in IMP.atom.get_leaves(h)))
-gemt = IMP.pmi.restraints.em.GaussianEMRestraint(resdensities_tail,'../em_map_files/asturias_tail_module_translated_resampled.mrc.gmm.49.txt',
+gemt = IMP.pmi1.restraints.em.GaussianEMRestraint(resdensities_tail,'../em_map_files/asturias_tail_module_translated_resampled.mrc.gmm.49.txt',
                                                target_mass_scale=tail_mass,
                                                 slope=0.000001,
                                                 target_radii_scale=3.0,
@@ -228,7 +228,7 @@ outputobjects.append(gemt)
 
 nframes=20000
 if '--test' in sys.argv: nframes=1000
-mc1=IMP.pmi.macros.ReplicaExchange0(m,
+mc1=IMP.pmi1.macros.ReplicaExchange0(m,
                                     simo,
                                     monte_carlo_sample_objects=sampleobjects,
                                     output_objects=outputobjects,

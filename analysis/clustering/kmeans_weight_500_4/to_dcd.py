@@ -15,7 +15,7 @@ import ast
 import sys
 sys.path.append('/opt/chimera-1.11-1.fc24/share/Trajectory/DCD/MDToolsMarch97/')
 import md
-import IMP.pmi.output
+import IMP.pmi1.output
 import IMP.rmf
 import RMF
 
@@ -64,7 +64,7 @@ class DCDOutput(object):
 
     def _get_coords(self, mhs):
         assert(len(mhs) == 1)
-        o = IMP.pmi.output.Output(atomistic=True)
+        o = IMP.pmi1.output.Output(atomistic=True)
         name = 'dcd-output'
         o.dictionary_pdbs[name] = mhs[0]
         o._init_dictchain(name, mhs[0])

@@ -4,9 +4,9 @@ import IMP.atom
 import IMP.core
 import IMP.display
 import IMP.rmf
-import IMP.pmi
-import IMP.pmi.analysis
-import IMP.pmi.output
+import IMP.pmi1
+import IMP.pmi1.analysis
+import IMP.pmi1.output
 import RMF
 
 def get_median_rmf(rmfsfile):
@@ -28,7 +28,7 @@ rh = RMF.open_rmf_file_read_only(medianrmf)
 prots = IMP.rmf.create_hierarchies(rh, model)
 IMP.rmf.load_frame(rh, frame)
 model.update()
-particle_dict=IMP.pmi.analysis.get_particles_at_resolution_one(prots[0])
+particle_dict=IMP.pmi1.analysis.get_particles_at_resolution_one(prots[0])
 
 reduced_density_dict={"med6":["med6"],
                       "med8":["med8"],
@@ -72,7 +72,7 @@ for p in reduced_density_dict:
 
     
 
-o=IMP.pmi.output.Output()
+o=IMP.pmi1.output.Output()
 o.init_rmf(cluster_directory+"median_rmsf.rmf3",[prots[0]])
 o.write_rmf(cluster_directory+"median_rmsf.rmf3")
 o.close_rmf(cluster_directory+"median_rmsf.rmf3")
