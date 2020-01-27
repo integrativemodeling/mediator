@@ -168,7 +168,7 @@ _License_: [CC-BY-SA-4.0](https://creativecommons.org/licenses/by-sa/4.0/legalco
 This work is freely available under the terms of the Creative Commons
 Attribution-ShareAlike 4.0 International License.
 
-_Last known good IMP version_: [![build info](https://integrativemodeling.org/systems/?sysstat=18&branch=master)](https://integrativemodeling.org/systems/) [![build info](https://integrativemodeling.org/systems/?sysstat=18&branch=develop)](https://integrativemodeling.org/systems/)
+_Last known good IMP version_: [![build info](https://integrativemodeling.org/systems/18/badge.svg?branch=master)](https://integrativemodeling.org/systems/) [![build info](https://integrativemodeling.org/systems/18/badge.svg?branch=develop)](https://integrativemodeling.org/systems/)
 
 _Publications_:
  - P. Robinson, M. Trnka, R. Pellarin, C. Greenberg, D. Bushnell, R. Davis,
