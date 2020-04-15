@@ -5,6 +5,10 @@ import IMP.atom
 import IMP.container
 
 import ihm
+try:
+    import ihm.reference
+except ImportError:
+    pass
 import IMP.pmi1.mmcif
 import IMP.pmi1.restraints.crosslinking
 import IMP.pmi1.restraints.stereochemistry
@@ -260,4 +264,16 @@ if '--mmcif' in sys.argv:
     simo.add_metadata(loc)
     with open('clustering.py') as fh:
         exec(fh.read())
+    # Link entities to UniProt
+    if hasattr(ihm, 'reference'):
+        for subunit, accession in (
+                ('med6', 'P38782'), ('med8', 'P38304'), ('med11', 'Q99278'),
+                ('med17', 'P32569'), ('med18', 'P32585'), ('med20', 'P34162'),
+                ('med22', 'P32570'), ('med4', 'Q12343'), ('med7', 'Q08278'),
+                ('med9', 'P33308'), ('med31', 'P38633'), ('med21', 'P47822'),
+                ('med10', 'Q06213'), ('med1', 'Q12321'), ('med14', 'P19263'),
+                ('med19', 'P25046'), ('med2', 'Q12124'), ('med3', 'P40356'),
+                ('med5', 'P53114'), ('med15', 'P19659'), ('med16', 'P32259')):
+            ref = ihm.reference.UniProtSequence.from_accession(accession)
+            e = po.asym_units[subunit].entity.references.append(ref)
     po.flush()
