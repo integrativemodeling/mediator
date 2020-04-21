@@ -38,8 +38,12 @@ class Tests(unittest.TestCase):
         os.chdir(os.path.join(TOPDIR, 'sampling', 'modeling'))
         if os.path.exists("mediator.cif"):
             os.unlink("mediator.cif")
+        # Potentially override methods that need network access
+        env = os.environ.copy()
+        env['PYTHONPATH'] = os.path.join(TOPDIR, 'test', 'mock') \
+                            + ':' + env.get('PYTHONPATH', '')
         p = subprocess.check_call(
-                ["python", "modeling.py", "--mmcif", "--dry-run"])
+                ["python", "modeling.py", "--mmcif", "--dry-run"], env=env)
         # Check output file
         self._check_mmcif_file('mediator.cif')
 
