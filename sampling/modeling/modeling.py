@@ -46,12 +46,20 @@ simo.add_metadata(ihm.Software(
           version='5.13.1',
           location='http://prospector.ucsf.edu/'))
 # We used Situs to dock the Head module into an EM map
-simo.add_metadata(ihm.Software(
+s = ihm.Software(
           name='Situs', classification='density map fitting',
           description='Modeling of atomic resolution structures into '
                       'low-resolution density maps',
           version='2.7',
-          location='http://situs.biomachina.org/'))
+          location='http://situs.biomachina.org/')
+if hasattr(s, 'citation'):
+    s.citation = ihm.Citation(
+        pmid='22505255', title='Conventions and workflows for using Situs.',
+        journal='Acta Crystallogr D Biol Crystallogr', volume=68,
+        page_range=('344', '351'), year=2012, authors=['Wriggers W'],
+        doi='10.1107/S0907444911049791')
+simo.add_metadata(s)
+
 simo.add_metadata(ihm.Citation(
           pmid='26402457',
           title="Molecular architecture of the yeast Mediator complex.",
