@@ -50,7 +50,7 @@ class Tests(unittest.TestCase):
     def _check_mmcif_file(self, fname):
         with open(fname) as fh:
             s, = ihm.reader.read(fh)
-        self.assertEqual(len(s.citations), 1)
+        self.assertEqual(len(s.citations), 5)
         self.assertEqual(s.citations[0].doi, '10.7554/eLife.08719')
         self.assertEqual(len(s.software), 5)
         self.assertEqual(len(s.orphan_starting_models), 14)
