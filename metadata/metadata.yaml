@@ -1,7 +1,7 @@
 title: Mediator Complex
 tags: [chemical crosslinks, PMI1, X-ray, EM density map]
 pmid: 26402457
-accessions: [PDBDEV_00000003]
+accessions: [8ZZ3]
 prereqs: [modeller, python/scikit, python/matplotlib, python/biopython]
 test:
     runtime: 24h
